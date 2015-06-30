@@ -328,3 +328,103 @@ exports['hasFile'] = {
         test.done()
     }
 }
+
+exports['addToPbxFileReferenceSection'] = {
+    'should not quote name when no special characters present in basename': function (test) {
+        var newProj = new pbx('.');
+            newProj.hash = jsonProject,
+            file = { 
+                uuid: newProj.generateUuid(), 
+                fileRef: newProj.generateUuid(), 
+                isa: 'PBXFileReference', 
+                explicitFileType: 'wrapper.application', 
+                includeInIndex: 0, 
+                basename: "SomeFile.m", 
+                path: "SomePath.m", 
+                sourceTree: 'BUILT_PRODUCTS_DIR' 
+            },
+            fileRefSection = newProj.pbxFileReferenceSection();
+
+        newProj.addToPbxFileReferenceSection(file);
+        test.equal(fileRefSection[file.fileRef].name, "SomeFile.m");
+        test.done();
+    },
+    'should quote name when special characters present in basename': function (test) {
+        var newProj = new pbx('.');
+            newProj.hash = jsonProject,
+            file = { 
+                uuid: newProj.generateUuid(), 
+                fileRef: newProj.generateUuid(), 
+                isa: 'PBXFileReference', 
+                explicitFileType: 'wrapper.application', 
+                includeInIndex: 0, 
+                basename: "Some File.m", 
+                path: "SomePath.m", 
+                sourceTree: 'BUILT_PRODUCTS_DIR' 
+            },
+            fileRefSection = newProj.pbxFileReferenceSection();
+
+        newProj.addToPbxFileReferenceSection(file);
+        test.equal(fileRefSection[file.fileRef].name, '"Some File.m"');
+        test.done();
+    },
+    'should not quote path when no special characters present in path': function (test) {
+        var newProj = new pbx('.');
+            newProj.hash = jsonProject,
+            file = { 
+                uuid: newProj.generateUuid(), 
+                fileRef: newProj.generateUuid(), 
+                isa: 'PBXFileReference', 
+                explicitFileType: 'wrapper.application', 
+                includeInIndex: 0, 
+                basename: "SomeFile.m", 
+                path: "SomePath.m", 
+                sourceTree: 'BUILT_PRODUCTS_DIR' 
+            },
+            fileRefSection = newProj.pbxFileReferenceSection();
+
+        newProj.addToPbxFileReferenceSection(file);
+        test.equal(fileRefSection[file.fileRef].path, "SomePath.m");
+        test.done();
+    },
+    'should quote path when special characters present in path': function (test) {
+        var newProj = new pbx('.');
+            newProj.hash = jsonProject,
+            file = { 
+                uuid: newProj.generateUuid(), 
+                fileRef: newProj.generateUuid(), 
+                isa: 'PBXFileReference', 
+                explicitFileType: 'wrapper.application', 
+                includeInIndex: 0, 
+                basename: "SomeFile.m", 
+                path: "SomeFolder/Some Path.m", 
+                sourceTree: 'BUILT_PRODUCTS_DIR' 
+            },
+            fileRefSection = newProj.pbxFileReferenceSection();
+
+        newProj.addToPbxFileReferenceSection(file);
+        test.equal(fileRefSection[file.fileRef].path, '"SomeFolder/Some Path.m"');
+        test.done();
+    },
+    'should quote path and name when special characters present in path and basename': function (test) {
+        var newProj = new pbx('.');
+            newProj.hash = jsonProject,
+            file = { 
+                uuid: newProj.generateUuid(), 
+                fileRef: newProj.generateUuid(), 
+                isa: 'PBXFileReference', 
+                explicitFileType: 'wrapper.application', 
+                includeInIndex: 0, 
+                basename: "Some File.m", 
+                path: "SomeFolder/Some Path.m", 
+                sourceTree: 'BUILT_PRODUCTS_DIR' 
+            },
+            fileRefSection = newProj.pbxFileReferenceSection();
+
+        newProj.addToPbxFileReferenceSection(file);
+        test.equal(fileRefSection[file.fileRef].name, '"Some File.m"');
+        test.equal(fileRefSection[file.fileRef].path, '"SomeFolder/Some Path.m"');
+        test.done();
+    }
+}
+
