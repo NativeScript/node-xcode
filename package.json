@@ -2,8 +2,8 @@
   "author": "Apache Software Foundation",
   "name": "xcode",
   "description": "parser for xcodeproj/project.pbxproj files",
-  "version": "2.0.1-dev",
-  "main": "index.js",
+  "main":"index.js",
+  "version": "1.5.0-NativeScript",
   "repository": {
     "url": "https://github.com/apache/cordova-node-xcode.git"
   },
