@@ -3,7 +3,7 @@
   "name": "xcode",
   "description": "parser for xcodeproj/project.pbxproj files",
   "main":"index.js",
-  "version": "1.5.1-NativeScript",
+  "version": "1.5.2-NativeScript",
   "repository": {
     "url": "https://github.com/alunny/node-xcode.git"
   },
