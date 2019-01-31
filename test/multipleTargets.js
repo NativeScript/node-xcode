@@ -18,7 +18,7 @@
 var fullProject = require('./fixtures/multiple-targets')
     fullProjectStr = JSON.stringify(fullProject),
     pbx = require('../lib/pbxProject'),
-    pbxFile = require('../lib/pbxFile'),
+    pbxFile = require('../lib/pbxFile').pbxFile,
     proj = new pbx('.');
 
 function cleanHash() {

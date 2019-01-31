@@ -18,7 +18,7 @@
 var fullProject = require('./fixtures/full-project')
     fullProjectStr = JSON.stringify(fullProject),
     pbx = require('../lib/pbxProject'),
-    pbxFile = require('../lib/pbxFile'),
+    pbxFile = require('../lib/pbxFile').pbxFile,
     proj = new pbx('.');
 
 function cleanHash() {
@@ -158,7 +158,7 @@ exports.removeResourceFile = {
         test.equal(fileRefEntry.isa, 'PBXFileReference');
         test.equal(fileRefEntry.fileEncoding, undefined);
         test.equal(fileRefEntry.lastKnownFileType, 'wrapper.plug-in');
-        test.equal(fileRefEntry.name, '"assets.bundle"');
+        test.equal(fileRefEntry.name, 'assets.bundle');
         test.equal(fileRefEntry.path, '"Resources/assets.bundle"');
         test.equal(fileRefEntry.sourceTree, '"<group>"');
 

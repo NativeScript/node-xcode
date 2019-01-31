@@ -18,7 +18,7 @@
 var fullProject = require('./fixtures/full-project')
     fullProjectStr = JSON.stringify(fullProject),
     pbx = require('../lib/pbxProject'),
-    pbxFile = require('../lib/pbxFile'),
+    pbxFile = require('../lib/pbxFile').pbxFile,
     proj = new pbx('.');
 
 function cleanHash() {
@@ -83,6 +83,7 @@ exports.removeSourceFile = {
         test.done();
     },
     'should remove 2 fields from the PBXFileReference section': function (test) {
+        debugger
         proj.addSourceFile('file.m');
         var newFile = proj.removeSourceFile('file.m'),
             fileRefSection = proj.pbxFileReferenceSection(),

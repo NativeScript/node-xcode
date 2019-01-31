@@ -169,7 +169,6 @@ exports.addRemovePbxGroup = {
         proj.removePbxGroup(groupName);
 
         var pbxGroupInPbx = proj.pbxGroupByName(groupName);
-        console.log(pbxGroupInPbx);
 
         test.ok(!pbxGroupInPbx);
         test.done()

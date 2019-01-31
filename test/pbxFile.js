@@ -15,7 +15,7 @@
  under the License.
  */
 
-var pbxFile = require('../lib/pbxFile');
+var pbxFile = require('../lib/pbxFile').pbxFile;
 
 exports['lastKnownFileType'] = {
     'should detect that a .m path means sourcecode.c.objc': function (test) {

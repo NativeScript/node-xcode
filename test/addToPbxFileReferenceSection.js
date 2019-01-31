@@ -18,7 +18,7 @@
 var jsonProject = require('./fixtures/full-project')
     fullProjectStr = JSON.stringify(jsonProject),
     pbx = require('../lib/pbxProject'),
-    pbxFile = require('../lib/pbxFile'),
+    pbxFile = require('../lib/pbxFile').pbxFile,
     myProj = new pbx('.');
 
 function cleanHash() {
@@ -39,8 +39,8 @@ exports['addToPbxFileReferenceSection function'] = {
 
         test.equal(myProj.pbxFileReferenceSection()[file.fileRef].isa, 'PBXFileReference');
         test.equal(myProj.pbxFileReferenceSection()[file.fileRef].lastKnownFileType, 'sourcecode.c.objc');
-        test.equal(myProj.pbxFileReferenceSection()[file.fileRef].name, '"file.m"');
-        test.equal(myProj.pbxFileReferenceSection()[file.fileRef].path, '"file.m"');
+        test.equal(myProj.pbxFileReferenceSection()[file.fileRef].name, 'file.m');
+        test.equal(myProj.pbxFileReferenceSection()[file.fileRef].path, 'file.m');
         test.equal(myProj.pbxFileReferenceSection()[file.fileRef].sourceTree, '"<group>"');
         test.equal(myProj.pbxFileReferenceSection()[file.fileRef].fileEncoding, 4);
         test.equal(myProj.pbxFileReferenceSection()[file.fileRef + "_comment"], 'file.m');

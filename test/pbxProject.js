@@ -18,8 +18,13 @@
 var pbx = require('../lib/pbxProject'),
     buildConfig = require('./fixtures/buildFiles'),
     jsonProject = require('./fixtures/full-project'),
+    fullProjectStr = JSON.stringify(jsonProject),
     fs = require('fs'),
     project;
+
+    function getCleanHash() {
+        return JSON.parse(fullProjectStr);
+    }
 
 exports['creation'] = {
     'should create a pbxProject with the new operator': function (test) {
@@ -332,7 +337,7 @@ exports['hasFile'] = {
 exports['addToPbxFileReferenceSection'] = {
     'should not quote name when no special characters present in basename': function (test) {
         var newProj = new pbx('.');
-            newProj.hash = jsonProject,
+            newProj.hash = getCleanHash(),
             file = { 
                 uuid: newProj.generateUuid(), 
                 fileRef: newProj.generateUuid(), 
@@ -351,7 +356,7 @@ exports['addToPbxFileReferenceSection'] = {
     },
     'should quote name when special characters present in basename': function (test) {
         var newProj = new pbx('.');
-            newProj.hash = jsonProject,
+            newProj.hash = getCleanHash(),
             file = { 
                 uuid: newProj.generateUuid(), 
                 fileRef: newProj.generateUuid(), 
@@ -370,7 +375,7 @@ exports['addToPbxFileReferenceSection'] = {
     },
     'should not quote path when no special characters present in path': function (test) {
         var newProj = new pbx('.');
-            newProj.hash = jsonProject,
+            newProj.hash = getCleanHash(),
             file = { 
                 uuid: newProj.generateUuid(), 
                 fileRef: newProj.generateUuid(), 
@@ -389,7 +394,7 @@ exports['addToPbxFileReferenceSection'] = {
     },
     'should quote path when special characters present in path': function (test) {
         var newProj = new pbx('.');
-            newProj.hash = jsonProject,
+            newProj.hash = getCleanHash(),
             file = { 
                 uuid: newProj.generateUuid(), 
                 fileRef: newProj.generateUuid(), 
@@ -408,7 +413,7 @@ exports['addToPbxFileReferenceSection'] = {
     },
     'should quote path and name when special characters present in path and basename': function (test) {
         var newProj = new pbx('.');
-            newProj.hash = jsonProject,
+            newProj.hash = getCleanHash(),
             file = { 
                 uuid: newProj.generateUuid(), 
                 fileRef: newProj.generateUuid(), 

@@ -18,7 +18,7 @@
 var fullProject = require('./fixtures/full-project')
     fullProjectStr = JSON.stringify(fullProject),
     pbx = require('../lib/pbxProject'),
-    pbxFile = require('../lib/pbxFile'),
+    pbxFile = require('../lib/pbxFile').pbxFile,
     proj = new pbx('.');
 
 function cleanHash() {
@@ -70,8 +70,8 @@ exports.addHeaderFile = {
         test.equal(fileRefEntry.isa, 'PBXFileReference');
         test.equal(fileRefEntry.fileEncoding, 4);
         test.equal(fileRefEntry.lastKnownFileType, 'sourcecode.c.h');
-        test.equal(fileRefEntry.name, '"file.h"');
-        test.equal(fileRefEntry.path, '"file.h"');
+        test.equal(fileRefEntry.name, 'file.h');
+        test.equal(fileRefEntry.path, 'file.h');
         test.equal(fileRefEntry.sourceTree, '"<group>"');
 
         test.done();

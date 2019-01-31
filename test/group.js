@@ -16,7 +16,7 @@
  */
 
 var pbx = require('../lib/pbxProject'),
-    pbxFile = require('../lib/pbxFile'),
+    pbxFile = require('../lib/pbxFile').pbxFile,
     project,
     projectHash;
 
