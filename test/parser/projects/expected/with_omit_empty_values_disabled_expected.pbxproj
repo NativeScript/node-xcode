@@ -260,8 +260,8 @@
 			children = (
 			);
 			name = CustomGroup;
-			path = undefined;
 			sourceTree = "<group>";
+			path = undefined;
 		};
 /* End PBXGroup section */
 
